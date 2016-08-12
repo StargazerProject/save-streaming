@@ -15,11 +15,11 @@ else:
     url = 'http://live.bilibili.com/api/h5playurl?roomid=33616'
     while(True):
         r = str(urllib.request.urlopen(url).read())
-        req = re.findall(r"(http://[^\s]{,58})",r)[0]
+        m3u8 = re.findall(r"(http://[^\s]{,58})",r)[0]
         loop = loop + 1
-        os.system('ffmpeg -i '+ req +' -acodec copy -bsf:a aac_adtstoasc -vcodec copy -f mp4 '+ str(int(time.time())) +'.mp4')
+        os.system('ffmpeg -i '+ m3u8 +' -acodec copy -bsf:a aac_adtstoasc -vcodec copy -f mp4 '+ str(int(time.time())) +'.mp4')
         time.sleep(30)
-        if loop ==10:
+        if loop == 11:
             break
         else:
            pass
